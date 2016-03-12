@@ -1,0 +1,20 @@
+{
+  "name" : "backbone-app",
+  "version" : "0.0.1",
+  "description" : "",
+  "dependencies" : {
+    "express" : "latest",
+    "express-session" : "latest",
+    "body-parser" : "latest",
+    "ejs" : "latest",
+    "mongodb" : "latest",
+    "password-hash" : "latest",
+    "gulp" : "latest",
+    "gulp-install" : "latest",
+    "main-bower-files" : "latest",
+    "gulp-filter" : "latest",
+    "gulp-uglify" : "latest",
+    "gulp-rename" : "latest",
+    "gulp-minify-css" : "latest"
+  }
+}
