@@ -4,7 +4,8 @@ var gulp = require('gulp'),
   gulpFilter = require('gulp-filter'),
   gulpUglify = require('gulp-uglify'),
   gulpRename = require('gulp-rename'),
-  gulpMinCss = require('gulp-minify-css');
+  gulpMinCss = require('gulp-minify-css'),
+  gulpSass = require('gulp-sass');
 
 gulp.task('dependencies-install', function() {
   gulp.src('./bower.json')
@@ -31,4 +32,18 @@ gulp.task('bower-files', function() {
     }))
     .pipe(gulp.dest('./assets/vendors/css'))
     .pipe(cssFilter.restore);
+});
+
+gulp.task('sass', function () {
+  return gulp.src('./src/style/**/*.scss')
+    .pipe(gulpSass().on('error', gulpSass.logError))
+    .pipe(gulpMinCss())
+    .pipe(gulpRename({
+      suffix : ".min"
+    }))
+    .pipe(gulp.dest('./assets/css/'));
+});
+
+gulp.task('sass:watch', function () {
+  gulp.watch('./src/style/**/*.scss', ['sass']);
 });
