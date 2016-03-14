@@ -1,7 +1,8 @@
 var PostModel = Backbone.Model.extend({
   defaults : {
+    id : 0,
     title : '',
     description : '',
-    likes : 0
+    like : 0
   }
 });
