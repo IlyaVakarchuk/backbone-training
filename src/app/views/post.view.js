@@ -34,6 +34,8 @@ var postItemView = Backbone.View.extend({
   initialize : function() {
     _.bindAll(this,'render');
     this.render();
+
+    this.model.on('destroy', this.removeView, this);
   },
 
   deletePost : function() {
@@ -50,6 +52,10 @@ var postItemView = Backbone.View.extend({
     deleteItem.render();
 
     return this;
+  },
+
+  removeView : function() {
+    this.remove();
   }
 });
 
@@ -76,7 +82,7 @@ var postLikeView = Backbone.View.extend({
   template: _.template("<span class='like-btn'><%= like %></span>"),
 
   render : function() {
-    this.parent.find('.like-container').append($(this.$el.html(this.template(this.model.toJSON()))))
+    this.parent.find('.like-container').append($(this.$el.html(this.template(this.model.toJSON()))));
     this.delegateEvents();
     return this;
   }
@@ -94,14 +100,14 @@ var deletePostView = Backbone.View.extend({
   },
 
   deletePost : function(e) {
-    this.render();
+    this.model.trigger('deletePost');
   },
 
   template: _.template("<span class='delete-btn'>DELETE</span>"),
 
   render : function() {
-    this.parent.find('.delete-container').append($(this.$el.html(this.template(this.model.toJSON()))))
+    this.parent.find('.delete-container').append($(this.$el.html(this.template(this.model.toJSON()))));
     return this;
   }
-})
+});
 
