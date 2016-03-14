@@ -2,6 +2,10 @@ var PostsView = Backbone.View.extend({
 
   tagName : 'ul',
 
+  initialize : function() {
+    this.listenTo(this.collection, 'reset', this.render);
+  },
+
   render : function() {
     this.collection.each(function(Post){
       var postItem = new postItemView({model : Post});

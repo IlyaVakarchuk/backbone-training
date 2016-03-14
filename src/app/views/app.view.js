@@ -7,7 +7,7 @@ var AppView = Backbone.View.extend({
     console.log('!');
 
   },
-
+/*
   events : {
     'click a#auth-login-btn' : 'loginAction',
     'click a#auth-registration-btn' : 'registrationAction'
@@ -21,7 +21,7 @@ var AppView = Backbone.View.extend({
   registrationAction : function() {
     authModel.set({action : 'registration'});
     authView.render();
-  },
+  }, */
 
   render : function () {
     $(this.$el.html(this.template(this.model.toJSON()))).appendTo('div#main-wrap');
