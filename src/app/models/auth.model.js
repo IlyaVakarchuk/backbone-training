@@ -13,7 +13,6 @@ var AuthModel = Backbone.Model.extend({
           appRoute.navigate('!/post', {trigger: true});
           break;
         case 'logout' :
-          console.log(this.get('a'))
           appRoute.navigate('!/', {trigger: true});
           break;
         default:
@@ -26,7 +25,7 @@ var AuthModel = Backbone.Model.extend({
     });
 
     this.on('change:state', function(){
-      myApp.set({loginSate : !(myApp.get('loginState'))});
+      myApp.set({loginSate : this.get('state')});
     })
   },
 
