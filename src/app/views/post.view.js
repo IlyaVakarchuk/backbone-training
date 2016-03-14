@@ -68,7 +68,8 @@ var postLikeView = Backbone.View.extend({
   },
 
   likePost : function(e) {
-    this.model.set({'like' : this.model.get('like') + 1});
+    //this.model.set({'like' : this.model.get('like') + 1});
+    this.model.likePost();
     this.render();
   },
 
