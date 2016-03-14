@@ -26,7 +26,7 @@
                                     <span class="icon-bar"></span>
                                     <span class="icon-bar"></span>
                                 </button>
-                                <a class="navbar-brand" href="#">BackboneJS</a>
+                                <a class="navbar-brand" href="#!/">BackboneJS</a>
                             </div>
 
                             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -34,13 +34,17 @@
                                 <ul class="nav navbar-nav">
                                     <li class="active"><a href="#!/">Home <span class="sr-only">(current)</span></a></li>
                                     <li><a href="#!/post">Post</a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"> AUTH</i> <span class="caret"></span></a>
-                                        <ul class="dropdown-menu">
-                                            <li><a id='auth-login-btn' href="#!/auth">Login</a></li>
-                                            <li><a id='auth-registration-btn' href="#!/auth">Registration</a></li>
-                                        </ul>
-                                    </li>
+                                    <% if (loginSate) { %>
+                                        <li><a href="#!/logout">Log Out</a></li>
+                                    <% } else { %>
+                                        <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"> AUTH</i> <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a id='auth-login-btn' href="#!/auth">Login</a></li>
+                                                <li><a id='auth-registration-btn' href="#!/auth">Registration</a></li>
+                                            </ul>
+                                        </li>
+                                    <% } %>
                                 </ul>
                             </div><!-- /.navbar-collapse -->
                         </div><!-- /.container-fluid -->
@@ -92,7 +96,7 @@
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="assets/vendors/js/underscore.min.js"></script>
     <script src="assets/vendors/js/backbone.min.js"></script>
-    <script src="assets/vendors/js/backbone-localstorage.min.js"></script>
+    <!--<script src="assets/vendors/js/backbone-localstorage.min.js"></script> -->
     <script src="src/app/models/app.model.js"></script>
     <script src="src/app/models/auth.model.js"></script>
     <script src="src/app/models/post.model.js"></script>
@@ -107,8 +111,8 @@
         <script src="src/app/views/post.view.js"></script>
         <script src="src/app/views/app.view.js"></script>
         <script src="src/app/views/auth.view.js"></script> -->
-    <script src="src/app/app.index.js"></script>
     <script src="src/app/routers/app.router.js"></script>
+    <script src="src/app/app.index.js"></script>
    <!-- <script src="src/app/routers/app.router.js"></script> -->
     </body>
 </html>

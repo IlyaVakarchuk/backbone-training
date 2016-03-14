@@ -4,8 +4,7 @@ var AppView = Backbone.View.extend({
   template : _.template($('#site').html()),
 
   initialize : function() {
-    console.log('!');
-
+      this.model.on('change:loginSate', this.render, this);
   },
 /*
   events : {

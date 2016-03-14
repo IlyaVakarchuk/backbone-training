@@ -4,17 +4,17 @@ var AuthView = Backbone.View.extend({
   id : 'authForm',
 
   template : _.template($('#auth-view').html()),
-/*
-  events : {
-    'click #auth-btn' : 'authAction'
+
+  initialize : function() {
+    this.model.on('change:state', this.close, this);
   },
 
-  authAction : function() {
-    this.model.authUser({email : $('#auth-email').val(), password : $('#auth-password').val()});
-  },
-*/
   render : function() {
     $(this.$el.html(this.template(this.model.toJSON()))).appendTo('body');
     return this;
+  },
+
+  close : function() {
+    this.remove();
   }
 });

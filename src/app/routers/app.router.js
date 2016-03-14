@@ -1,17 +1,19 @@
 var AppRoute = Backbone.Router.extend({
 
   routes : {
-    "" : "home",
+    "!/" : "home",
     "!/auth" : "auth",
     '!/auth-user' : 'authUser',
-    "!/post" : "post"
+    "!/post" : "post",
+    "!/logout" : "logout"
   },
 
 
   home : function() {
-    if (myApp.get('loginSate')) {
+    if (authModel.get('state')) {
       this.navigate('!/post', {trigger: true});
     } else {
+      authView.close();
       appView.render();
     }
   },
@@ -25,11 +27,16 @@ var AppRoute = Backbone.Router.extend({
   },
 
   post : function() {
-    if (myApp.get('loginSate')) {
-      postCollections.fetch({reset : true});
+    if (authModel.get('state')) {
+      postCollections.fetch({reset : true });
     } else {
       this.navigate('!/', {trigger: true});
     }
+  },
+
+  logout : function() {
+    postsView.close();
+    authModel.logout();
   },
 
   denied : function() {
@@ -37,7 +44,5 @@ var AppRoute = Backbone.Router.extend({
     this.navigate('home')
   }
 });
-
-var appRoute = new AppRoute();
 
 Backbone.history.start();
