@@ -1,0 +1,13 @@
+body {
+  div#error, div#success
+  {
+    display: none;
+  }
+
+  div#authForm {
+    h3 {
+      text-align: end;
+    }
+
+  }
+}
