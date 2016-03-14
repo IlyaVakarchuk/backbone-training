@@ -18,7 +18,7 @@ var PostsView = Backbone.View.extend({
     return this;
   },
 
-  close : function(callback) {
+  close : function() {
     this.remove();
     this.unbind();
   }
@@ -32,9 +32,6 @@ var postItemView = Backbone.View.extend({
   template : _.template($('#posts-view').html()),
 
   initialize : function() {
-    this.model.on('change', function(){
-      this.trigger('formSubmitted');
-    }, this);
     _.bindAll(this,'render');
     this.render();
   },
@@ -65,18 +62,22 @@ var postLikeView = Backbone.View.extend({
 
   initialize : function(options) {
     this.parent = options.parentView;
+
+    this.model.on('change:like', function(){
+      $(this.parent.find('.like-container')).empty();
+      this.render();
+    }, this);
   },
 
-  likePost : function(e) {
-    //this.model.set({'like' : this.model.get('like') + 1});
-    this.model.likePost();
-    this.render();
+  likePost : function() {
+    this.model.set({'likeState' : !this.model.get('likeState')});
   },
 
   template: _.template("<span class='like-btn'><%= like %></span>"),
 
   render : function() {
     this.parent.find('.like-container').append($(this.$el.html(this.template(this.model.toJSON()))))
+    this.delegateEvents();
     return this;
   }
 });
