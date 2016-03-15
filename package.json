@@ -12,7 +12,7 @@
     "gulp" : "latest",
     "gulp-install" : "latest",
     "main-bower-files" : "latest",
-    "gulp-filter" : "latest",
+    "gulp-filter" : "1.0.2",
     "gulp-uglify" : "latest",
     "gulp-rename" : "latest",
     "gulp-minify-css" : "latest",
