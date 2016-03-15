@@ -9,6 +9,8 @@
     "ejs" : "latest",
     "mongodb" : "latest",
     "password-hash" : "latest",
+    "pow-mongodb-fixtures" : "latest",
+    "async" : "latest",
     "gulp" : "latest",
     "gulp-install" : "latest",
     "main-bower-files" : "latest",
