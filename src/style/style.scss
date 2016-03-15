@@ -1,7 +1,13 @@
 body {
+  font-family: 'Roboto', sans-serif;
+
   div#authForm {
     h3 {
       text-align: end;
+    }
+
+    div#submit-block {
+      text-align: right;
     }
   }
 
@@ -10,21 +16,106 @@ body {
       ul {
         padding: 0;
         margin: 0;
+        text-align:  center;
 
         li {
           display: inline-block;
-          min-height: 400px;
+          position: relative;
+
+          height: 400px;
           max-width: 300px;
           min-width: 250px;
-          border: 1px solid black;
+
+          margin-right: 10px;
+          margin-top: 10px;
+
+          border-radius: 2px;
+
+          background-color: #80DEEA;
+
+          box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+          transition: all 0.2s ease-in-out;
 
           div.post-title {
-            min-height: 100px;
+            height: 100px;
+            background-color: #00BCD4;
+            box-shadow: inset 0 -6px 0 0 #F48FB1;
+
+            div:not(.delete-container) {
+              font-size: 50px;
+              height: 100%;
+              font-weight: 100;
+              line-height: 100px;
+            }
+
+            div {
+              display: inline-block;
+            }
+
+            div.delete-container {
+              float: right;
+              height: 100%;;
+              i {
+                cursor: pointer;
+                font-size: 20px;
+                color: #E0F7FA
+              }
+            }
+          }
+          div.post-descr {
+            height: 200px;
+            background-color: #616161;
+            position: relative;
+
+            div {
+              position: absolute;
+              height: 60%;
+              width: 80%;
+              left: 10%;
+              top: 20%;
+
+              span {
+                font-size: 20px;
+                color: white;
+                font-weight: lighter;
+              }
+            }
+
+            img {
+              height: 100%;
+              opacity: 0.2;
+            }
           }
 
-          div.post-descr {
-            min-height: 200px;
+          div.like-container {
+            position: absolute;
+            width: 100%;
+            height: 80px;
+            bottom: 0;
+
+            span {
+              cursor: pointer;
+              line-height: 80px;
+
+              i {
+                font-size: 24px;
+                color: #00BCD4;
+              }
+
+              i.like {
+                font-size: 16px;
+                color: #F50057;
+              }
+            }
           }
+        }
+
+        li:last-child {
+          margin-right: 0;
+        }
+
+        li:hover {
+          box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
         }
       }
     }

@@ -4,105 +4,108 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="assets/vendors/css/materialize.min.css">
+        <link rel="stylesheet" href="assets/vendors/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Roboto:400,100italic,300,700&subset=latin,cyrillic-ext,cyrillic' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="assets/css/style.min.css">
     </head>
-    <body class="container-fluid">
+    <body>
 
-    <div class="container-fluid" id="main-wrap" >
+    <div class="container" id="main-wrap">
+        <div class="row">
+            <div class="col s12">
+                <script type="text/template" id="site">
+                    <header class="row">
+                        <div class="col s12">
 
+                            <nav>
+                                <div class="nav-wrapper">
+                                    <a href="#!/" class="brand-logo">BackboneJS</a>
+                                    <ul class="right hide-on-med-and-down">
+                                        <li><a href="#!/">Home</a></li>
+                                        <li><a href="#!/post">Post</a></li>
 
-        <script type="text/template" id="site">
-            <header class="row">
-                <div class="col-md-12">
-                    <nav class="navbar navbar-default">
-                        <div class="container-fluid">
-                            <!-- Brand and toggle get grouped for better mobile display -->
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                                    <span class="sr-only">Toggle navigation</span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                    <span class="icon-bar"></span>
-                                </button>
-                                <a class="navbar-brand" href="#!/">BackboneJS</a>
-                            </div>
-
-                            <!-- Collect the nav links, forms, and other content for toggling -->
-                            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                <ul class="nav navbar-nav">
-                                    <li class="active"><a href="#!/">Home <span class="sr-only">(current)</span></a></li>
-                                    <li><a href="#!/post">Post</a></li>
-                                    <% if (loginState) { %>
-                                        <li><a href="#!/logout">Log Out</a></li>
-                                    <% } else { %>
-                                        <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-sign-in"> AUTH</i> <span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a id='auth-login-btn' href="#!/auth">Login</a></li>
-                                                <li><a id='auth-registration-btn' href="#!/auth">Registration</a></li>
-                                            </ul>
-                                        </li>
-                                    <% } %>
-                                </ul>
-                            </div><!-- /.navbar-collapse -->
-                        </div><!-- /.container-fluid -->
-                    </nav>
-                </div>
-            </header>
-            <main class='row' id="main-content">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div id="post-from-server">
-
+                                        <% if (loginState) { %>
+                                            <li><a href="#!/logout">Log Out</a></li>
+                                        <% } else { %>
+                                            <li><a id='auth-login-btn' href="#!/auth">Auth</a></li>
+                                        <% } %>
+                                    </ul>
+                                </div>
+                            </nav>
                         </div>
-                    </div>
-                </div>
-            </main>
-        </script>
+                    </header>
 
-        <script type="text/template" id="auth-view">
-            <div class="row">
-                <div class="col-md-5">
-                            <h3><small>Please</small> <span class="auth-action"><%= action %></span></h3>
+                    <main class='row' id="main-content">
+                        <div class="col s12">
+                            <div id="auth-form-container" class="col s6 offset-s3">
 
-                            <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label for="auth-email" class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10">
-                                        <input type="email" class="form-control" id="auth-email" placeholder="Email">
-                                    </div>
+                            </div>
+                            <div class="col-md-10 col-sm-6 col-sm-offset-3 col-md-offset-1">
+
+                                <div id="post-from-server">
+
                                 </div>
-                                <div class="form-group">
-                                    <label for="auth-password" class="col-sm-2 control-label">Password</label>
-                                    <div class="col-sm-10">
-                                        <input type="password" class="form-control" id="auth-password" placeholder="Password">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <div class="col-sm-offset-2 col-sm-10">
-                                        <a href="#!/auth-user" id='auth-btn' type="submit" class="btn btn-default">Sign in</a>
-                                    </div>
-                                </div>
-                            </form>
-                    </div>
+                            </div>
+                        </div>
+                    </main>
+                </script>
             </div>
-
-        </script>
-
-
-        <script type="text/template" id="posts-view">
-            <div class="post-title"><%=title%></div>
-            <div class="post-descr"><%=description%></div>
-            <div class="like-container"></div>
-            <div class="delete-container"></div>
-        </script>
-
+        </div>
     </div>
 
+    <script type="text/template" id="auth-view">
+
+
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="auth-email" type="text" class="validate">
+                        <label for="auth-email">Email</label>
+                    </div>
+                    <div class="input-field col s12">
+                        <input id="auth-password" type="password" class="validate">
+                        <label for="auth-password">Password</label>
+                    </div>
+                    <div class="col s6 offset-s6" id="submit-block">
+                        <a href="#!/auth-user" id='auth-btn' class="waves-effect waves-light btn">Auth</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+    </script>
+
+    <script type="text/template" id="posts-view">
+        <div class="post-title">
+            <div><%=title%></div>
+            <div class="delete-container">
+
+            </div>
+        </div>
+        <div class="post-descr">
+            <img class="responsive-img" src="src/images/flat_01.jpg">
+            <div>
+                <span><%=description%></span>
+            </div>
+        </div>
+        <div class="like-container"></div>
+    </script>
+
+    <script type="text/template" id="like-post-view">
+        <a class='like-btn'><i class="fa fa-heart"> <%= like %></i></a>
+    </script>
+
+    <script type="text/template" id="delete-post-view">
+        <i class="fa fa-times delete-btn"></i>
+    </script>
+
+
+
     <script src="assets/vendors/js/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="assets/vendors/js/materialize.min.js"></script>
     <script src="assets/vendors/js/underscore.min.js"></script>
     <script src="assets/vendors/js/backbone.min.js"></script>
     <!--<script src="assets/vendors/js/backbone-localstorage.min.js"></script> -->
