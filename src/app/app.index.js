@@ -6,8 +6,5 @@ var appRoute = new AppRoute(),
   postCollections = new PostCollection(),
   postsView = new PostsView({collection : postCollections});
 
-console.log(myApp.get('loginState'))
-console.log(myApp.get('loginState'))
-
 appView.render();
 

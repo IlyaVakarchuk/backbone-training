@@ -9,7 +9,6 @@ var AppModel = Backbone.Model.extend({
     }
   },
   initialize : function() {
-    console.log(localStorage);
     if (localStorage.getItem('loginState') !== null) {
       this.set({loginState : true});
     }
