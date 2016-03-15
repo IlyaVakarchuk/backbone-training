@@ -36,7 +36,7 @@ var AppRoute = Backbone.Router.extend({
   },
 
   logout : function() {
-    postsView.removeView();
+    //postsView.removeView();
     authModel.logout();
   },
 
