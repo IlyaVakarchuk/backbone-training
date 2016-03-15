@@ -6,7 +6,8 @@ var gulp = require('gulp'),
   gulpRename = require('gulp-rename'),
   gulpMinCss = require('gulp-minify-css'),
   gulpSass = require('gulp-sass'),
-  async = require('async');
+  async = require('async'),
+  config = require('./config.json');
 
 gulp.task('dependencies-install', function() {
   gulp.src('./bower.json')

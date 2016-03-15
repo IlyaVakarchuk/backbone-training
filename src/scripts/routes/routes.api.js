@@ -44,7 +44,6 @@ router.get('/post/', function(req, res) {
       console.log(err);
       res.end('{"notice" : "Error", "message" : ' + err +'}');
     } else  {
-      console.log(data);
       res.send(data);
     }
   });
@@ -70,7 +69,6 @@ router.put('/post/:id', function(req, res) {
   dbPointer.collection('tabs').find({ "id" : req.params.id }).toArray(function (error, data) {
     if (error) {
 
-      console.log(err);
       res.end('{"notice" : "Error", "message" : ' + err +'}');
     } else  {
       var newLikeCount = 0, action;
