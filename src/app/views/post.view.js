@@ -71,14 +71,18 @@ var postLikeView = Backbone.View.extend({
     this.model.on('change:like', function(){
       $(this.parent.find('.like-container')).empty();
       this.render();
+      if (this.model.get('likeState')) {
+        $(this.parent.find('.like-container i')).addClass('like');
+      }
     }, this);
   },
 
   likePost : function() {
     this.model.set({'likeState' : !this.model.get('likeState')});
+
   },
 
-  template: _.template("<span class='like-btn'><%= like %></span>"),
+  template: _.template($("#like-post-view").html()),
 
   render : function() {
     this.parent.find('.like-container').append($(this.$el.html(this.template(this.model.toJSON()))));
@@ -102,7 +106,7 @@ var deletePostView = Backbone.View.extend({
     this.model.trigger('deletePost');
   },
 
-  template: _.template("<span class='delete-btn'>DELETE</span>"),
+  template: _.template($('#delete-post-view').html()),
 
   render : function() {
     this.parent.find('.delete-container').append($(this.$el.html(this.template(this.model.toJSON()))));

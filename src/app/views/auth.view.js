@@ -10,7 +10,7 @@ var AuthView = Backbone.View.extend({
   },
 
   render : function() {
-    $(this.$el.html(this.template(this.model.toJSON()))).appendTo('body');
+    $(this.$el.html(this.template(this.model.toJSON()))).appendTo('#auth-form-container');
     return this;
   },
 
