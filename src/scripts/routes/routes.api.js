@@ -28,7 +28,7 @@ router.post('/user',function(req,res) {
             res.end('{"action" : "auth", "notice" : "Error", "message" : ' + error +'}');
           } else {
             req.session.email = req.body.email;
-            var str = '{"action" : "auth", "notice" : "Success", "email" : "' + req.body.email + '", "root" : "0" }';
+            var str = '{"action" : "auth", "notice" : "Success", "email" : "' + req.body.email + '","likes" : "'+ [] +  '" ,"root" : "0" }';
             res.end(str);
           }
       });

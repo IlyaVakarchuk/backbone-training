@@ -10,7 +10,12 @@ var AuthModel = Backbone.Model.extend({
 
       switch (res.action) {
         case 'auth' :
-          var arr = res.likes.split(',');
+          var arr = [];
+
+          if (res.likes.length) {
+            arr = res.likes.split(',');
+          }
+
           $.each(arr, function(index, el){
             arr[index] = parseInt(el)
           });

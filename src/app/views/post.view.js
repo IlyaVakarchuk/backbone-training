@@ -74,7 +74,7 @@ var postLikeView = Backbone.View.extend({
     this.model.on('change:like', function(){
       $(this.parent.find('.like-container')).empty();
       this.render();
-      
+
     }, this);
   },
 
