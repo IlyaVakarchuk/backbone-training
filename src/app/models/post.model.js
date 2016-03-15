@@ -27,13 +27,15 @@ var PostModel = Backbone.Model.extend({
       console.error('Error:', error);
     });
 
-    this.on('change:likeState', this.likePost);
+    this.on('setLike', this.likePost);
 
     this.on('deletePost', this.deletePost)
   },
 
   likePost : function() {
-    this.save(this.get('likeState'));
+    this.save({
+        email : localStorage.getItem('userEmail')
+    });
   },
 
   deletePost : function() {

@@ -14,12 +14,14 @@ var AuthModel = Backbone.Model.extend({
           $.each(arr, function(index, el){
             arr[index] = parseInt(el)
           });
-          this.set({'likes' : arr});
+          this.set({likes : arr});
           this.set({state : true});
+          localStorage.setItem('userEmail', res.email);
           appRoute.navigate('!/post', {trigger: true});
           break;
         case 'logout' :
           localStorage.removeItem('loginState');
+          localStorage.removeItem('userEmail');
           appRoute.navigate('!/', {trigger: true});
           break;
         default:

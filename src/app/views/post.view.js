@@ -5,7 +5,6 @@ var PostsView = Backbone.View.extend({
   initialize : function() {
     this.listenTo(this.collection, 'reset', function(){
       this.collection.trigger('checkState');
-
       this.render();
     })
   },
@@ -75,21 +74,22 @@ var postLikeView = Backbone.View.extend({
     this.model.on('change:like', function(){
       $(this.parent.find('.like-container')).empty();
       this.render();
-      if (this.model.get('likeState')) {
-        $(this.parent.find('.like-container i')).addClass('like');
-      }
+      
     }, this);
   },
 
   likePost : function() {
     this.model.set({'likeState' : !this.model.get('likeState')});
-
+    this.model.trigger('setLike');
   },
 
   template: _.template($("#like-post-view").html()),
 
   render : function() {
     this.parent.find('.like-container').append($(this.$el.html(this.template(this.model.toJSON()))));
+    if (this.model.get('likeState')) {
+      $(this.parent.find('.like-container i')).addClass('like');
+    }
     this.delegateEvents();
     return this;
   }
