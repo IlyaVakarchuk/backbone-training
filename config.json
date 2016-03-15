@@ -1,0 +1,34 @@
+{
+  "paths" : {
+    "src" : {
+      "style" : "src/style/**/*.scss",
+      "vendors" : "assets/vendors"
+    },
+    "build" : {
+      "style" : "assets/css"
+    }
+  },
+  "server" : {
+    "host" : "localhost",
+    "port" : "3000"
+  },
+  "bd" : {
+    "host": "localhost",
+    "port": "27017",
+    "bd_name": "nodejs_db",
+    "fixtures" : {
+      "users" : [
+        { "email" : "user1@gmail.com", "password" : "sha1$479cd736$1$d83640a37782e2b9306c53ea9f9402f076df4d51", "likes" : [ "4", "2", "1" ] },
+        { "email" : "user2@mail.com", "password" : "sha1$b66d13bf$1$33b0d853d7a7515d3087d914442ad33cb3aee570", "likes" : [ "2", "3" ] }
+      ],
+      "tabs" : [
+        {"id" : "1", "title" : "title_no3", "description" : "description_no1", "like" : 2},
+        {"id" : "2", "title" : "title_no2", "description" : "description_no2", "like" : 6},
+        {"id" : "3", "title" : "title_no3", "description" : "description_no3", "like" : 2},
+        {"id" : "4", "title" : "title_no4", "description" : "description_no4", "like" : 1},
+        {"id" : "5", "title" : "title_no5", "description" : "description_no5", "like" : 7},
+        {"id" : "6", "title" : "title_no6", "description" : "description_no6", "like" : 1}
+      ]
+    }
+  }
+}
