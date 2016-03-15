@@ -1,7 +1,8 @@
 var AuthModel = Backbone.Model.extend({
   defaults : {
     action : 'registration',
-    state : false
+    state : false,
+    likes : []
   },
 
   initialize : function () {
@@ -9,6 +10,11 @@ var AuthModel = Backbone.Model.extend({
 
       switch (res.action) {
         case 'auth' :
+          var arr = res.likes.split(',');
+          $.each(arr, function(index, el){
+            arr[index] = parseInt(el)
+          });
+          this.set({'likes' : arr});
           this.set({state : true});
           appRoute.navigate('!/post', {trigger: true});
           break;

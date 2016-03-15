@@ -3,7 +3,11 @@ var PostsView = Backbone.View.extend({
   tagName : 'ul',
 
   initialize : function() {
-    this.listenTo(this.collection, 'reset', this.render)
+    this.listenTo(this.collection, 'reset', function(){
+      this.collection.trigger('checkState');
+
+      this.render();
+    })
   },
 
   render : function() {
