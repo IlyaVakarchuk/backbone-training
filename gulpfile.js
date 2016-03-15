@@ -5,7 +5,8 @@ var gulp = require('gulp'),
   gulpUglify = require('gulp-uglify'),
   gulpRename = require('gulp-rename'),
   gulpMinCss = require('gulp-minify-css'),
-  gulpSass = require('gulp-sass');
+  gulpSass = require('gulp-sass'),
+  async = require('async');
 
 gulp.task('dependencies-install', function() {
   gulp.src('./bower.json')
@@ -18,38 +19,55 @@ gulp.task('bower-files', function() {
   var cssFilter = gulpFilter('*.css');
 
   return gulp.src(gulpBowerFiles())
-
-    // grab vendor js files from bower_components, minify and push in /public
     .pipe(jsFilter)
-    .pipe(gulp.dest('./assets/vendors' + '/js/'))
+    .pipe(gulp.dest(config.paths.src.vendors + '/js/'))
     .pipe(gulpUglify())
     .pipe(gulpRename({
       suffix: ".min"
     }))
-    .pipe(gulp.dest('./assets/vendors' + '/js/'))
+    .pipe(gulp.dest(config.paths.src.vendors + '/js/'))
     .pipe(jsFilter.restore())
 
-    // grab vendor css files from bower_components, minify and push in /public
     .pipe(cssFilter)
-    .pipe(gulp.dest('./assets/vendors' + '/css'))
+    .pipe(gulp.dest(config.paths.src.vendors + '/css'))
     .pipe(gulpMinCss())
     .pipe(gulpRename({
       suffix: ".min"
     }))
-    .pipe(gulp.dest('./assets/vendors' + '/css'))
+    .pipe(gulp.dest(config.paths.src.vendors + '/css'))
     .pipe(cssFilter.restore())
 });
 
 gulp.task('sass', function () {
-  return gulp.src('./src/style/**/*.scss')
+  return gulp.src(config.paths.src.style)
     .pipe(gulpSass().on('error', gulpSass.logError))
     .pipe(gulpMinCss())
     .pipe(gulpRename({
       suffix : ".min"
     }))
-    .pipe(gulp.dest('./assets/css/'));
+    .pipe(gulp.dest(config.paths.build.style));
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch('./src/style/**/*.scss', ['sass']);
+  gulp.watch(config.paths.src.style, ['sass']);
+});
+
+gulp.task('client-build', function(){
+  gulp.src(['src/app/**/*'])
+    .pipe(gulpUglify())
+    .pipe(gulp.dest('app'))
+});
+
+
+gulp.task('default', function(){
+  var tasks = ['dependencies-install', 'bower-files', 'client-build', 'sass'];
+
+  var sync = tasks.map(function(task) {
+    return function(callback) {
+      gulp.run(task, function(err) {
+        callback(err);
+      });
+    };
+  });
+  async.series(sync);
 });
