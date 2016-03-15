@@ -27,6 +27,7 @@ var AppRoute = Backbone.Router.extend({
   },
 
   post : function() {
+    console.log(postCollections);
     if (authModel.get('state')) {
       postCollections.fetch({reset : true });
     } else {
@@ -35,7 +36,7 @@ var AppRoute = Backbone.Router.extend({
   },
 
   logout : function() {
-    postsView.close();
+    postsView.removeView();
     authModel.logout();
   },
 

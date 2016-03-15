@@ -1,6 +1,6 @@
 var AppModel = Backbone.Model.extend({
   defaults : {
-    loginSate : false,
+    loginState : false,
     rootUser : false,
 
     access : {
@@ -9,7 +9,10 @@ var AppModel = Backbone.Model.extend({
     }
   },
   initialize : function() {
-    console.log('model Init!')
+    console.log(localStorage);
+    if (localStorage.getItem('loginState') !== null) {
+      this.set({loginState : true});
+    }
   }
 });
 

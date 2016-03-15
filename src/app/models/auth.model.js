@@ -1,7 +1,7 @@
 var AuthModel = Backbone.Model.extend({
   defaults : {
     action : 'registration',
-    state : 0
+    state : false
   },
 
   initialize : function () {
@@ -9,10 +9,11 @@ var AuthModel = Backbone.Model.extend({
 
       switch (res.action) {
         case 'auth' :
-          this.set({state : 1});
+          this.set({state : true});
           appRoute.navigate('!/post', {trigger: true});
           break;
         case 'logout' :
+          localStorage.removeItem('loginState');
           appRoute.navigate('!/', {trigger: true});
           break;
         default:
@@ -25,7 +26,8 @@ var AuthModel = Backbone.Model.extend({
     });
 
     this.on('change:state', function(){
-      myApp.set({loginSate : this.get('state')});
+      myApp.set({loginState : this.get('state')});
+      localStorage.setItem('loginState', this.get('state'));
     })
   },
 
@@ -37,7 +39,7 @@ var AuthModel = Backbone.Model.extend({
   },
 
   logout : function() {
-    this.save({state : 0}, {
+    this.save({state : false}, {
       wait : true,
       url : 'http://localhost:3000/api/logout'
     })

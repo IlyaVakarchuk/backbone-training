@@ -4,21 +4,23 @@ var PostsView = Backbone.View.extend({
 
   initialize : function() {
     this.listenTo(this.collection, 'reset', this.render);
+
+    this.collection.on('destroy', this.removeView, this);
   },
 
   render : function() {
-    this.close();
+    this.removeView();
     this.collection.each(function(Post) {
       var postItem = new postItemView({model : Post});
       this.$el.append(postItem.render().el);
     }, this);
 
-    $(this.$el).appendTo('body');
-
+    $(this.$el).appendTo('#post-from-server');
+    this.delegateEvents();
     return this;
   },
 
-  close : function() {
+  removeView : function() {
     this.remove();
     this.unbind();
   }
