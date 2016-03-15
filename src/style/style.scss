@@ -1,13 +1,32 @@
 body {
-  div#error, div#success
-  {
-    display: none;
-  }
-
   div#authForm {
     h3 {
       text-align: end;
     }
+  }
 
+  main#main-content {
+    div#post-from-server {
+      ul {
+        padding: 0;
+        margin: 0;
+
+        li {
+          display: inline-block;
+          min-height: 400px;
+          max-width: 300px;
+          min-width: 250px;
+          border: 1px solid black;
+
+          div.post-title {
+            min-height: 100px;
+          }
+
+          div.post-descr {
+            min-height: 200px;
+          }
+        }
+      }
+    }
   }
 }
