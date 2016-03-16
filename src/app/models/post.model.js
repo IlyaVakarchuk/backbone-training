@@ -4,7 +4,7 @@ var PostModel = Backbone.Model.extend({
     title : '',
     description : '',
     like : 0,
-    likeState : 0
+    likeState : 0,
   },
 
   initialize : function () {

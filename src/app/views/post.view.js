@@ -51,7 +51,10 @@ var postItemView = Backbone.View.extend({
     var deleteItem = new deletePostView({model : this.model, parentView : this.$el});
 
     likeItem.render();
-    deleteItem.render();
+
+    if (localStorage.getItem('rootUser') != 'undefined' && localStorage.getItem('rootUser') !=0 ) {
+      deleteItem.render();
+    }
 
     return this;
   },

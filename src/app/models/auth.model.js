@@ -11,12 +11,12 @@ var AuthModel = Backbone.Model.extend({
 
     if (attrs.action == 'auth') {
       if (!re.test(attrs.email)) {
-        Materialize.toast('Incorrect email!', 4000);
+        Materialize.toast('Incorrect email', 4000);
         return 'incorrect email';
       }
-      
+
       if (!attrs.password.length) {
-        Materialize.toast('Incorrect password!', 4000);
+        Materialize.toast('Incorrect password', 4000);
         return 'incorrect password';
       }
     }
@@ -24,7 +24,6 @@ var AuthModel = Backbone.Model.extend({
 
   initialize : function () {
     this.on('sync',function(model, res){
-      console.log(res);
       switch (res.action) {
         case 'auth' :
           if (res.notice == 'Success') {
@@ -39,6 +38,7 @@ var AuthModel = Backbone.Model.extend({
             });
             this.set({likes: arr});
             this.set({state: true});
+            localStorage.setItem('rootUser', res.root);
             localStorage.setItem('userEmail', res.email);
             appRoute.navigate('!/post', {trigger: true});
           } else {
@@ -48,6 +48,7 @@ var AuthModel = Backbone.Model.extend({
         case 'logout' :
           localStorage.removeItem('loginState');
           localStorage.removeItem('userEmail');
+          localStorage.removeItem('rootUser');
           appRoute.navigate('!/', {trigger: true});
           break;
         default:
@@ -73,7 +74,7 @@ var AuthModel = Backbone.Model.extend({
   },
 
   logout : function() {
-    this.save({state : false}, {
+    this.save({state : false, action: 'logout'}, {
       wait : true,
       url : 'http://localhost:3000/api/logout'
     })
