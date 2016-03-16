@@ -1,21 +1,26 @@
-var AuthView = Backbone.View.extend({
-  tagName : 'div',
+define(['backbone', 'underscore'], function(Backbone, _) {
+  var AuthView = Backbone.View.extend({
+    tagName : 'div',
 
-  id : 'authForm',
+    id : 'authForm',
 
-  template : _.template($('#auth-view').html()),
+    template : _.template($('#auth-view').html()),
 
-  initialize : function() {
-    this.model.on('change:state', this.close, this);
-  },
+    initialize : function() {
+      this.model.on('change:state', this.close, this);
+    },
 
-  render : function() {
-    $(this.$el.html(this.template(this.model.toJSON()))).appendTo('#auth-form-container');
-    this.delegateEvents();
-    return this;
-  },
+    render : function() {
+      $(this.$el.html(this.template(this.model.toJSON()))).appendTo('#auth-form-container');
+      this.delegateEvents();
+      return this;
+    },
 
-  close : function() {
-    this.remove();
-  }
+    close : function() {
+      this.remove();
+    }
+  });
+
+  return AuthView;
 });
+
