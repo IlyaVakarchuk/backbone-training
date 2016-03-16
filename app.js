@@ -32,7 +32,7 @@ app.use(express.static(__dirname ));
 
 // User custom router for API
 app.use('/api', routesApi);
-//app.use('/', routesStatic);
+app.use('/', routesStatic);
 
 // Load test data in BD
 myFixtures.clearAndLoad(config.bd.fixtures, function(){
