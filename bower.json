@@ -6,7 +6,8 @@
     "backbone" : "1.3.1",
     "underscore" : "1.8.3",
     "components-font-awesome" : "latest",
-    "materialize" : "latest"
+    "materialize" : "latest",
+    "requirejs" : "latest"
   },
   "private": true
 }
