@@ -18,11 +18,11 @@
     "bd_name": "nodejs_db",
     "fixtures" : {
       "users" : [
-        { "email" : "user1@gmail.com", "password" : "sha1$479cd736$1$d83640a37782e2b9306c53ea9f9402f076df4d51", "likes" : [ "4", "2", "1" ] },
-        { "email" : "user2@mail.com", "password" : "sha1$b66d13bf$1$33b0d853d7a7515d3087d914442ad33cb3aee570", "likes" : [ "2", "3" ] }
+        { "email" : "user@gmail.com", "password" : "sha1$479cd736$1$d83640a37782e2b9306c53ea9f9402f076df4d51", "likes" : [ "4", "2", "1" ], "root" : 0},
+        { "email" : "user_root@gmail.com", "password" : "sha1$b66d13bf$1$33b0d853d7a7515d3087d914442ad33cb3aee570", "likes" : [ "2", "3" ] , "root" : 1}
       ],
       "tabs" : [
-        {"id" : "1", "title" : "title_no3", "description" : "description_no1", "like" : 2},
+        {"id" : "1", "title" : "title_no1", "description" : "description_no1", "like" : 2},
         {"id" : "2", "title" : "title_no2", "description" : "description_no2", "like" : 6},
         {"id" : "3", "title" : "title_no3", "description" : "description_no3", "like" : 2},
         {"id" : "4", "title" : "title_no4", "description" : "description_no4", "like" : 1},
