@@ -8,9 +8,6 @@ router.post('/user',function(req,res) {
   var password = passwordHash.generate(req.body.password),
     dbPointer = db.db();
 
-  console.log(req.body.email);
-  console.log(req.body.password);
-
   dbPointer.collection('users').find({email : req.body.email}).toArray(function (err, result) {
     if (err) {
       res.end('{"notice" : "Error", "message" : ' + err +'}');
