@@ -18,6 +18,7 @@
     "gulp-uglify" : "latest",
     "gulp-rename" : "latest",
     "gulp-minify-css" : "latest",
-    "gulp-sass" : "latest"
+    "gulp-sass" : "latest",
+    "gulp-bower" : "latest"
   }
 }

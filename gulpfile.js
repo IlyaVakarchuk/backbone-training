@@ -2,6 +2,7 @@ var gulp = require('gulp'),
   gulpInstall = require('gulp-install'),
   gulpBowerFiles = require('main-bower-files'),
   gulpFilter = require('gulp-filter'),
+  gulpBower = require('gulp-bower'),
   gulpUglify = require('gulp-uglify'),
   gulpRename = require('gulp-rename'),
   gulpMinCss = require('gulp-minify-css'),
@@ -10,8 +11,8 @@ var gulp = require('gulp'),
   config = require('./config.json');
 
 gulp.task('dependencies-install', function() {
-  gulp.src('./bower.json')
-    .pipe(gulpInstall());
+  return gulpBower()
+    .pipe(gulp.dest('./bower_components'))
 });
 
 gulp.task('bower-files', function() {
