@@ -1,28 +1,49 @@
 var AuthModel = Backbone.Model.extend({
   defaults : {
-    action : 'registration',
+    action : 'auth',
     state : false,
-    likes : []
+    likes : [],
+    email: ''
+  },
+
+  validate: function(attrs, options) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+    if (attrs.action == 'auth') {
+      if (!re.test(attrs.email)) {
+        Materialize.toast('Incorrect email!', 4000);
+        return 'incorrect email';
+      }
+      
+      if (!attrs.password.length) {
+        Materialize.toast('Incorrect password!', 4000);
+        return 'incorrect password';
+      }
+    }
   },
 
   initialize : function () {
-    this.on('sync',function(model, res, options){
-
+    this.on('sync',function(model, res){
+      console.log(res);
       switch (res.action) {
         case 'auth' :
-          var arr = [];
+          if (res.notice == 'Success') {
+            var arr = [];
 
-          if (res.likes.length) {
-            arr = res.likes.split(',');
+            if (res.likes.length) {
+              arr = res.likes.split(',');
+            }
+
+            $.each(arr, function (index, el) {
+              arr[index] = parseInt(el)
+            });
+            this.set({likes: arr});
+            this.set({state: true});
+            localStorage.setItem('userEmail', res.email);
+            appRoute.navigate('!/post', {trigger: true});
+          } else {
+            Materialize.toast(res.message, 4000)
           }
-
-          $.each(arr, function(index, el){
-            arr[index] = parseInt(el)
-          });
-          this.set({likes : arr});
-          this.set({state : true});
-          localStorage.setItem('userEmail', res.email);
-          appRoute.navigate('!/post', {trigger: true});
           break;
         case 'logout' :
           localStorage.removeItem('loginState');
@@ -48,7 +69,7 @@ var AuthModel = Backbone.Model.extend({
     this.save(user, {
       wait : true,
       url : 'http://localhost:3000/api/user'
-    })
+    });
   },
 
   logout : function() {

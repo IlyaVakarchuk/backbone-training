@@ -11,6 +11,7 @@ var AuthView = Backbone.View.extend({
 
   render : function() {
     $(this.$el.html(this.template(this.model.toJSON()))).appendTo('#auth-form-container');
+    this.delegateEvents();
     return this;
   },
 

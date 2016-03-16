@@ -23,7 +23,8 @@ var AppRoute = Backbone.Router.extend({
   },
 
   authUser : function() {
-    authModel.authUser({email : $('#auth-email').val(), password : $('#auth-password').val()});
+    authModel.authUser({action : 'auth', email : $('#auth-email').val(), password : $('#auth-password').val()});
+    this.navigate('!/auth', {trigger: true});
   },
 
   post : function() {
