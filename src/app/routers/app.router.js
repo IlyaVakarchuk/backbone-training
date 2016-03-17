@@ -30,7 +30,6 @@ define(['backbone',
       },
 
       auth : function() {
-        console.log( this.authView);
         this.authView.render();
       },
 

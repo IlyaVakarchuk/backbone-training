@@ -29,9 +29,7 @@ define(['backbone',
       },
 
       initialize : function (opt) {
-        this.appRoute = opt.appRoute;
-        console.log(opt)
-        this.myApp = opt.myApp
+        this.myApp = opt.myApp;
         this.on('sync',function(model, res){
           switch (res.action) {
             case 'auth' :
@@ -49,7 +47,7 @@ define(['backbone',
                 this.set({state: true});
                 localStorage.setItem('rootUser', res.root);
                 localStorage.setItem('userEmail', res.email);
-                //this.appRoute.navigate('!/post', {trigger: true});
+                Backbone.history.navigate('!/post', {trigger:true});
               } else {
                 Materialize.toast(res.message, 4000)
               }
@@ -58,7 +56,7 @@ define(['backbone',
               localStorage.removeItem('loginState');
               localStorage.removeItem('userEmail');
               localStorage.removeItem('rootUser');
-              //appRoute.navigate('!/', {trigger: true});
+              Backbone.history.navigate('!/', {trigger:true});
               break;
             default:
               break
