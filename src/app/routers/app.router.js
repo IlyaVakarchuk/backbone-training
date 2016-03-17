@@ -12,37 +12,47 @@ define(['backbone',
         "!/logout" : "logout"
       },
 
+      initialize : function(authModel, authView,appView, postCollections) {
+        this.authView = authView;
+        this.authModel = authModel;
+        this.appView = appView;
+        this.postCollections = postCollections;
+      },
+
 
       home : function() {
-        if (authModel.get('state')) {
+        if (this.authModel.get('state')) {
           this.navigate('!/post', {trigger: true});
         } else {
-          authView.close();
-          appView.render();
+          this.authView.close();
+          this.appView.render();
         }
       },
 
       auth : function() {
-        authView.render();
+        console.log( this.authView);
+        this.authView.render();
       },
 
       authUser : function() {
-        authModel.authUser({action : 'auth', email : $('#auth-email').val(), password : $('#auth-password').val()});
+        this.authModel.authUser({action : 'auth', email : $('#auth-email').val(), password : $('#auth-password').val()});
         this.navigate('!/auth', {trigger: true});
       },
 
       post : function() {
-        if (authModel.get('state')) {
-          postCollections.fetch({reset : true });
+        if (this.authModel.get('state')) {
+          this.postCollections.fetch({reset : true });
         } else {
           this.navigate('!/', {trigger: true});
         }
       },
 
       logout : function() {
-        authModel.logout();
+        this.authModel.logout();
       }
     });
 
-    return AppRoute;
+    return AppRoute
+
+
 });

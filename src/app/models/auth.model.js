@@ -3,7 +3,7 @@ define(['backbone',
   'jquery',
   'underscore',
   'appModel'],
-  function(Backbone, Materialize, $, _, myApp) {
+  function(Backbone, Materialize, $, _) {
     var AuthModel = Backbone.Model.extend({
       defaults : {
         action : 'auth',
@@ -28,7 +28,10 @@ define(['backbone',
         }
       },
 
-      initialize : function () {
+      initialize : function (opt) {
+        this.appRoute = opt.appRoute;
+        console.log(opt)
+        this.myApp = opt.myApp
         this.on('sync',function(model, res){
           switch (res.action) {
             case 'auth' :
@@ -46,7 +49,7 @@ define(['backbone',
                 this.set({state: true});
                 localStorage.setItem('rootUser', res.root);
                 localStorage.setItem('userEmail', res.email);
-                appRoute.navigate('!/post', {trigger: true});
+                //this.appRoute.navigate('!/post', {trigger: true});
               } else {
                 Materialize.toast(res.message, 4000)
               }
@@ -67,7 +70,7 @@ define(['backbone',
         });
 
         this.on('change:state', function(){
-          myApp.set({loginState : this.get('state')});
+          this.myApp.set({loginState : this.get('state')});
           localStorage.setItem('loginState', this.get('state'));
         })
       },
